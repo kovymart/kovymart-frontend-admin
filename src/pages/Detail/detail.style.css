@@ -1,0 +1,72 @@
+.form-detail {
+  margin-left: 15%;
+  margin-right: 10%;
+  padding-bottom: 0%;
+  font-size: 40px !important;
+}
+.p-text {
+  min-height: 2.2rem;
+  width: auto;
+  height: auto;
+  margin-top: 10px;
+  border-radius: 6px 6px;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 350px;
+  margin-bottom: 20px;
+  margin-left: 1px;
+  margin-right: 10px;
+  overflow: auto;
+  font-weight: 500;
+}
+
+.text-Aria {
+  width: 97.8%;
+  height: 35px;
+  margin-top: 1px;
+  margin-right: 1px;
+}
+.text-link {
+  color: #0a47ff;
+  text-decoration-line: underline;
+}
+/*css đơn vị phần tử*/
+.unit {
+  width: 40px;
+  height: 35px;
+  float: right;
+  color: black;
+  background-color: #e9ecef;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.btn-ViewImage {
+  text-align: center;
+  background-color: cornflowerblue;
+  margin-left: 20%;
+  margin-right: 20%;
+  width: 60%;
+  height: 40px;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.scroll-image {
+  overflow-x: auto;
+  overflow-y: auto;
+  text-align: center;
+}
+.image-detail {
+  width: 300px;
+  height: 200px;
+  text-align: center;
+  padding: 2px;
+}
+
+.p-unline-bold {
+  font-weight: bold;
+  text-decoration-line: underline;
+  text-decoration-style: solid;
+  font-size: 16px;
+}

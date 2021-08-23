@@ -1,0 +1,1 @@
+export type NotifyType = 'success' | 'info' | 'warning' | 'error';

@@ -1,0 +1,67 @@
+$primary: #e99667;
+$secondary: #6c757d;
+$danger: #ff4d6d;
+$white: #fff;
+$light: #e9ecef;
+$radius: 3px;
+$success: #65B891;
+$dark: #000000d9;
+// Custom button
+.btn-ui-primary {
+  background-color: $primary !important;
+  color: $white !important;
+  border-color: $primary !important;
+  border-radius: $radius !important ;
+  &:hover {
+    background-color: $white !important;
+    color: $primary !important;
+  }
+}
+
+.btn-ui-light {
+  background-color: $light !important;
+  color: $dark !important;
+  border-color: $light !important;
+  border-radius: $radius !important ;
+  &:hover {
+    background-color: $white !important;
+    color: $dark !important;
+  }
+}
+
+.btn-ui-success {
+  background-color: $success !important;
+  color: $white !important;
+  border-color: $success !important;
+  border-radius: $radius !important ;
+  &:hover {
+    background-color: $white !important;
+    color: $success !important;
+  }
+}
+
+.btn-ui-secondary {
+  background-color: $secondary !important;
+  color: $white !important ;
+  border-color: $secondary !important;
+  border-radius: $radius !important;
+  &:hover {
+    background-color: $white !important;
+    color: $secondary !important;
+  }
+}
+.btn-ui-danger {
+  background-color: $danger !important;
+  color: $white !important;
+  border-color: $danger !important;
+  border-radius: $radius !important;
+  &:hover {
+    background-color: $white !important;
+    color: $danger !important;
+  }
+}
+
+// Spin
+.ant-spin-dot-item {
+  background-color: #e99667 !important;
+}

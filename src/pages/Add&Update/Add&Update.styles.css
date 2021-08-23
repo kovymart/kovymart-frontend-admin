@@ -1,0 +1,57 @@
+.content {
+	padding: 20px 300px;
+}
+
+.title-area {
+	color: #ff6600;
+	font-weight: bold;
+	padding-bottom: 10px;
+}
+
+.title-area label {
+	font-size: 20px !important;
+}
+
+@media (min-width: 1200px) {
+	.content.responsive {
+		padding: 20px 250px;
+	}
+}
+@media (max-width: 700px) {
+	.halfcolumn {
+		flex: 50% !important;
+	}
+}
+
+@media (max-width: 500px) {
+	.column {
+		flex: 100% !important;
+	}
+}
+
+@media (max-width: 1200px) {
+	.content.responsive {
+		padding: 20px 30px;
+	}
+}
+
+.submit-btn {
+	min-width: 200px;
+	min-height: 60px;
+	font-family: "Nunito", sans-serif;
+	font-size: 15px;
+	border: 1px solid #ff6600 !important;
+	text-transform: uppercase;
+	letter-spacing: 1.3px;
+	font-weight: 700;
+	color: #ff6600;
+	background: #ffffff;
+	border: none;
+	border-radius: 1000px;
+	box-shadow: 12px 12px 24px rgba(255, 239, 9, 0.64);
+	transition: all 0.3s ease-in-out 0s;
+	cursor: pointer;
+	outline: none;
+	position: relative;
+	padding: 10px;
+}

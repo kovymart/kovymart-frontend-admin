@@ -1,8 +1,9 @@
 $primary: #e99667;
-$secondary: #6c757d;
+$secondary: #9ba2a9;
 $danger: #ff4d6d;
 $white: #fff;
 $light: #e9ecef;
+$light-grey: #a8a8a8;
 $radius: 3px;
 $success: #65B891;
 $dark: #000000d9;
@@ -21,7 +22,7 @@ $dark: #000000d9;
 .btn-ui-light {
   background-color: $light !important;
   color: $dark !important;
-  border-color: $light !important;
+  border-color: $light-grey !important;
   border-radius: $radius !important ;
   &:hover {
     background-color: $white !important;
@@ -65,3 +66,4 @@ $dark: #000000d9;
 .ant-spin-dot-item {
   background-color: #e99667 !important;
 }
+

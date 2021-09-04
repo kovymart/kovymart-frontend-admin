@@ -2,10 +2,9 @@ import axios from "axios";
 import queryString from "querystring";
 
 const axiosClient = axios.create({
-	baseURL: "http://betaapiinternal.thegioididong.com/api",
+	baseURL:  'http://localhost:3002/api/',
 	headers: {
 		"Content-Type": "application/json",
-		AuthenKey: "GroundKey",
 	},
 	paramsSerializer: (params) => queryString.stringify(params),
 });

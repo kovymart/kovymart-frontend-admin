@@ -449,7 +449,7 @@ export const Update = () => {
 							<Col className="column" flex="1 0 50%">
 								<ButtonUI
 									style={{ width: "100%" }}
-									htmlType="submit"
+										htmlType="submit"
 									text="Lưu thông tin"
 								/>
 							</Col>

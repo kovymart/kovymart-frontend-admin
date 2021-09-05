@@ -8,13 +8,14 @@ import {
 import { NotifyHelper } from "../helpers/NotifyHelper/notify-helper"
 import categoryApi from "../api/category.api"
 import { MessageStatus } from '../constants/message-status'
+import { CategoryI } from "../types"
 
 interface InitialStateI {
     requesting: boolean,
     success?: boolean,
     message?: string,
-    list?: Array<object> | null | undefined,
-    object?: object | null
+    list?: Array<CategoryI> | null,
+    object?: CategoryI | null,
 }
 
 const initialState: InitialStateI = {
@@ -41,15 +42,22 @@ export const getCategoryById = createAsyncThunk(
 
 export const addCategory = createAsyncThunk(
     "category/addCategory",
-    async (data: object) => {
+    async (data: CategoryI) => {
         return await categoryApi.addCategory(data)
     }
 )
 
 export const updateCategory = createAsyncThunk(
     "category/updateCategory",
-    async (data: object) => {
+    async (data: any) => {
+        return await categoryApi.updateCategory(data.id, data.data)
+    }
+)
 
+export const deleteCategory = createAsyncThunk(
+    "category/deleteCategory",
+    async (id: number) => {
+        return await categoryApi.deleteCategory(id)
     }
 )
 
@@ -82,9 +90,19 @@ const categorySlice = createSlice({
                 state.success = true
                 state.object = action.payload
             })
-            
+            .addCase(deleteCategory.fulfilled, (state, action: any) => {
+                state.requesting = false
+                state.success = true
+                NotifyHelper.success('Xóa thành công !', MessageStatus.SUCCESS)
+                state.list = state.list!.filter(c => c.id! !== action.payload[1])
+            })
+            .addCase(updateCategory.fulfilled, (state) => {
+                state.requesting = false
+                state.success = true
+                NotifyHelper.success('Cập nhật thành công !', MessageStatus.SUCCESS)
+            })
 
-            // Pending and rejected 
+            // utilities for  pending, rejected
             .addMatcher(isPendingAction, (state) => {
                 state.requesting = true
             })
@@ -103,12 +121,12 @@ const selectCategory = (state: AppState) => state.category
 
 export const selectCategoryList = createSelector(
     [selectCategory],
-    (category: any) => category.list
+    (state: any) => state.list
 )
 
 export const selectRequesting = createSelector(
     [selectCategory],
-    (category: any) => category.requesting
+    (state: any) => state.requesting
 )
 
 export const selectCategoryById = createSelector(

@@ -17,10 +17,11 @@ const categoryApi = {
     },
     deleteCategory: (id: number) => {
         const url = `${prefix}/${id}`
-        return axiosClient.delete(url)
+        const res = axiosClient.delete(url)
+        return [res, id]
     },
     updateCategory: ( id: number, data: object) => {
-        const url = `${prefix}/ ${id}`
+        const url = `${prefix}/${id}`
         return axiosClient.patch(url, {...data})    
     }
 }

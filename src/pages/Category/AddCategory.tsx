@@ -3,18 +3,19 @@ import { PlusOutlined } from "@ant-design/icons"
 import ButtonUI from '../../components/UIKit/ButtonUI'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import {addCategory, selectRequesting} from '../../stores/category.slice'
+import { addCategory, selectRequesting } from '../../stores/category.slice'
+import { CategoryI } from '../../types'
 
 const { Title } = Typography
 const { TextArea } = Input
 
 function AddCategory() {
     const dispatch = useDispatch()
-    const handleSubmit = (e: object) => {
-       dispatch(addCategory(e))
+    const handleSubmit = (e: CategoryI) => {
+        dispatch(addCategory(e))
     }
     const requesting = useSelector(selectRequesting)
-    
+
     return (
         <Card
             style={{ width: "100%" }}
@@ -26,7 +27,6 @@ function AddCategory() {
             <Row className="d-flex" justify="center">
                 <Col xs={24} md={20}>
                     <Form layout="vertical" onFinish={handleSubmit}>
-
                         <Row gutter={16} >
                             <Col xs={24} lg={8}>
                                 <Title level={5}>Tên danh mục </Title>
@@ -51,7 +51,7 @@ function AddCategory() {
                                     text="Thêm"
                                     htmlType="submit"
                                     withIcon={<PlusOutlined />}
-                                    requesting = {requesting}
+                                    requesting={requesting}
                                 />
                             </Col>
                             <Col>

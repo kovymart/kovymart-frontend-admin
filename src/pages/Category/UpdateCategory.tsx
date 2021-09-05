@@ -2,19 +2,20 @@ import { Row, Col, Card, Typography, Form, Input, Skeleton } from 'antd'
 import ButtonUI from '../../components/UIKit/ButtonUI'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectRequesting, getCategoryById, selectCategoryById } from '../../stores/category.slice'
-import { useEffect, useState } from 'react'
+import { updateCategory, selectRequesting, getCategoryById, selectCategoryById } from '../../stores/category.slice'
+import { useEffect } from 'react'
 import { useParams } from "react-router-dom"
 import { RouteParamsI } from '../../constants/route-params'
+import { SyncOutlined } from '@ant-design/icons'
+import { CategoryI } from '../../types'
 const { Title } = Typography
 const { TextArea } = Input
 function UpdateCategory() {
     const [form] = Form.useForm()
-
     const dispatch = useDispatch()
 
-    const handleSubmit = (e: object) => {
-dispatch(handleSubmit)
+    const handleSubmit = (e: CategoryI) => {
+        dispatch(updateCategory({ id: parseInt(params.id), data: e }))
     }
 
 
@@ -30,14 +31,14 @@ dispatch(handleSubmit)
 
     // initialize data
     useEffect(() => {
-        if(category !== null){
-            form.setFieldsValue({ 
+        if (category !== null) {
+            form.setFieldsValue({
                 name: category.name,
                 description: category.description
             })
         }
-    },[category])
-    
+    }, [category])
+
     return (
         <>
             {category !== null
@@ -60,7 +61,7 @@ dispatch(handleSubmit)
                                         <Form.Item name="name"
                                             rules={[{ required: true, message: 'Vui lòng nhập thông tin này!' }]}
                                         >
-                                            <Input  />
+                                            <Input />
                                         </Form.Item>
                                     </Col>
                                     <Col xs={24} lg={16}>
@@ -78,6 +79,7 @@ dispatch(handleSubmit)
                                             text="Cập nhật"
                                             htmlType="submit"
                                             requesting={requesting}
+                                            withIcon={<SyncOutlined />}
                                         />
                                     </Col>
                                     <Col>

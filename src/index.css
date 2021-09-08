@@ -6,18 +6,17 @@
 * {
   font-family: "Quicksand", sans-serif;
 }
-
 h5.ant-typography, .ant-typography h5 {
     color: #343a40 !important;
 }
 .header-primary {
-  background-color: #e99667;
+  background-color: #52b788;
 }
 .heading-title {
   color: #3f3f3f !important;
 }
 .color-primary {
-  color: #ff7e34 !important;
+  color: #52b788 !important;
 }
 .color-white{
     color: #ffffff !important;
@@ -33,7 +32,7 @@ h5.ant-typography, .ant-typography h5 {
   width: 10%;
 }
 .ant-layout-sider-trigger {
-  background: #587a9a !important;
+  background: #2d6a4f !important;
 }
 .ant-layout-sider-children {
   background: #fff !important;
@@ -142,6 +141,9 @@ h5.ant-typography, .ant-typography h5 {
 .my-5 {
   margin-top: 3rem !important;
   margin-bottom: 3rem !important;
+}
+.ms-2{
+  margin-left: 0.5rem !important; 
 }
 .me-5 {
   margin-right: 3rem !important;

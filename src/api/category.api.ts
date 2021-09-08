@@ -1,7 +1,8 @@
-import axiosClient from "./axiousClient"
+import axiosClient from "./axiosClient"
+import { CategoryI } from '../types'
 
 const prefix = "/category"
-const url = `${prefix}`
+
 const categoryApi = {
     getCategoryList: () => {
         const url = `${prefix}`
@@ -11,7 +12,7 @@ const categoryApi = {
         const url = `${prefix}/${id}`
         return axiosClient.get(url)
     },
-    addCategory: (data: object) => {
+    addCategory: (data: CategoryI) => {
         const url = `${prefix}`
         return axiosClient.post(url, { ...data })
     },
@@ -20,9 +21,9 @@ const categoryApi = {
         const res = axiosClient.delete(url)
         return [res, id]
     },
-    updateCategory: ( id: number, data: object) => {
+    updateCategory: (id: number, data: CategoryI) => {
         const url = `${prefix}/${id}`
-        return axiosClient.patch(url, {...data})    
+        return axiosClient.patch(url, { ...data })
     }
 }
 

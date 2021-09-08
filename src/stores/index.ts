@@ -11,10 +11,8 @@ import {
 	PURGE,
 	REGISTER,
 } from "redux-persist"
-import houseforrentSlice from "./houseforrent.slice"
-import placeSlice from "./place.slice"
-import locationSlice from "./location.slice"
 import categorySlice from "./category.slice"
+import authSlice from "./auth.slice"
 const persistConfig = {
 	key: "root",
 	storage,
@@ -22,10 +20,8 @@ const persistConfig = {
 }
 
 const rootReducer = combineReducers({
-	location: locationSlice,
-	house: houseforrentSlice,
-	place: placeSlice,
 	category: categorySlice,
+	auth: authSlice
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

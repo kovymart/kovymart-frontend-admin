@@ -17,7 +17,7 @@ const TableCategories = () => {
 
     useEffect(() => {
         dispatch(getCategoryList())
-    }, [])
+    }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleDelete = () => {
         dispatch(deleteCategory(selectedId!))

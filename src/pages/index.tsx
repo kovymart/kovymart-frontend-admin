@@ -1,24 +1,23 @@
 import { Route, Switch } from "react-router-dom"
-import { Detail } from "./Detail/Detail"
-import { Home } from "./Home/Home"
-import { Add } from "./Add&Update/Add"
-import { Update } from "./Add&Update/Update"
 import Category from "./Category/Category"
 import AddCategory from "./Category/AddCategory"
 import UpdateCategory from "./Category/UpdateCategory"
-export const Pages = () => {
+import SignIn from './Auth/SignIn'
+import SignUp from './Auth/SignUp'
+import Home from './Home/Home'
 
+export const Pages = () => {
 	return (
 		<>
 			<Switch>
 				<Route exact path="/">
 					<Home />
 				</Route>
-				<Route path="/update/:id">
-					<Update />
+				<Route exact path="/signin">
+					<SignIn />
 				</Route>
-				<Route path="/add">
-					<Add />
+				<Route exact path="/signup">
+					<SignUp />
 				</Route>
 				<Route path="/category">
 					<Category />
@@ -28,9 +27,6 @@ export const Pages = () => {
 				</Route>
 				<Route path="/updatecategory/:id">
 					<UpdateCategory />
-				</Route>
-				<Route path="/detail/:id">
-					<Detail />
 				</Route>
 				<Route exact path="/">
 					<Home />

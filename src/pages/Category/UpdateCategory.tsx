@@ -24,7 +24,7 @@ function UpdateCategory() {
         if (params.id) {
             dispatch(getCategoryById(parseInt(params.id)))
         }
-    }, [params.id])
+    }, [params.id]) // eslint-disable-line react-hooks/exhaustive-deps
 
     const requesting = useSelector(selectRequesting)
     const category = useSelector(selectCategoryById)
@@ -37,7 +37,7 @@ function UpdateCategory() {
                 description: category.description
             })
         }
-    }, [category])
+    }, [category]) // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <>

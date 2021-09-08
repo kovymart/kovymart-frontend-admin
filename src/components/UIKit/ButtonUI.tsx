@@ -1,4 +1,4 @@
-import { Button, Spin } from "antd"
+import { Button } from "antd"
 import "./style.scss"
 import { LoadingOutlined } from '@ant-design/icons'
 
@@ -20,12 +20,9 @@ const ButtonUI = (props: any) => {
     let btnStyle = {}
     btnStyle = { ...btnStyle, ...style }
     let customClassname = ""
-    let customLoading = ""
-    const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />
     if (!normal) {
         type = ""
         customClassname = `btn-ui-${variant}`
-        customLoading = `loading-${variant}`
     }
 
     return (

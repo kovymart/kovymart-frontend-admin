@@ -21,7 +21,7 @@ const SignIn = () => {
         if (message === MessageStatus.SUCCESS) {
             history.push('/')
         }
-    }, [message])
+    }, [message]) // eslint-disable-line react-hooks/exhaustive-deps
 
 
     const requesting: boolean = useSelector(selectRequesting)

@@ -1,7 +1,7 @@
 import { Card, Form, Input, Row, Col, Typography } from 'antd'
 import { AccountI } from '../../types'
 import ButtonUI from '../../components/UIKit/ButtonUI'
-import { signUp, selectRequesting, selectSignUpMessage } from '../../stores/auth.slice'
+import { signUp, selectRequesting } from '../../stores/auth.slice'
 import { useDispatch, useSelector } from 'react-redux'
 import {  Link } from "react-router-dom"
 

@@ -2,7 +2,7 @@ import axios from "axios";
 import queryString from "querystring";
 
 const axiosClient = axios.create({
-	baseURL:  'http://localhost:3002/api/',
+	baseURL:  'https://kovy-mart-api.herokuapp.com/api/',
 	headers: {
 		"Content-Type": "application/json",
 	},

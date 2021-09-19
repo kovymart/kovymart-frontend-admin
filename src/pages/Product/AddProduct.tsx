@@ -14,6 +14,7 @@ const { Title } = Typography;
 const { TextArea } = Input;
 
 function AddProduct() {
+    const [form] = Form.useForm();
     const dispatch = useDispatch()
     const categories: Array<CategoryI> = useSelector(selectCategoryList)!
     const suppliers: Array<SupplierI> = useSelector(selectSupplierList)!
@@ -27,12 +28,19 @@ function AddProduct() {
             supplierId: Number(e.supplierId?.toString().replace(/[-/\\^$*+?.()|[\]{}]/g, ''))
         }
         
-        console.log(newProduct)
-        dispatch(addProduct(e));
+        dispatch(addProduct(newProduct));
     }
 
     const requesting = useSelector(selectRequesting);
-    
+    useEffect(() => {
+       
+            form.setFieldsValue({
+                price : 0,
+                discount: 0
+            })
+        
+    }, [form])
+
     useEffect(() => {
         dispatch(getCategoryList());
         dispatch(getSupplierList());
@@ -48,7 +56,7 @@ function AddProduct() {
         >
             <Row className="d-flex" justify="center">
                 <Col xs={24} md={20}>
-                    <Form layout="vertical" onFinish={handleSubmit}>
+                    <Form layout="vertical" onFinish={handleSubmit} form={form}>
                         <Row gutter={16} >
                             <Col xs={24} lg={8}>
                                 <Title level={5}>Tên sản phẩm </Title>
@@ -78,7 +86,7 @@ function AddProduct() {
                                 <Title level={5}>Discount </Title>
                                 <Form.Item name="discount"
                                 >
-                                    <InputNumber min={0} max={1000000} defaultValue={0} />
+                                    <InputNumber min={0} max={1000000}  />
                                 </Form.Item>
                             </Col>
                             <Col xs={24} lg={8}>
@@ -86,7 +94,7 @@ function AddProduct() {
                                 <Form.Item name="price" 
                                     rules={[{ required: true, message: 'Vui lòng nhập thông tin này!' }]}
                                 >
-                                    <InputNumber min={0} max={1000000} defaultValue={0} />
+                                    <InputNumber min={0} max={1000000}  />
                                 </Form.Item>
                             </Col>
                             <Col xs={24} lg={8}>

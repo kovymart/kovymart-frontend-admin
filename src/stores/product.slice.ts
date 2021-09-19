@@ -48,7 +48,7 @@ export const addProduct = createAsyncThunk(
 )
 
 export const updateProduct = createAsyncThunk(
-    "product/updateproduct",
+    "product/updateProduct",
     async (data: any) => {
         return await productApi.updateProduct(data.id, data.data)
     }
@@ -129,7 +129,7 @@ export const selectRequesting = createSelector(
     (state: any) => state.requesting
 )
 
-export const selectproductById = createSelector(
+export const selectProductById = createSelector(
     [selectProduct],
     (product: any) => product.object
 )

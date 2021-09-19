@@ -1,26 +1,28 @@
 import { Modal, Card, Table, Skeleton, Typography, BackTop, Row, Col } from "antd"
 import { Link } from 'react-router-dom'
 import ButtonUI from "../../components/UIKit/ButtonUI"
-import { getCategoryList, selectCategoryList, deleteCategory } from "../../stores/category.slice"
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
-import { CategoryI } from '../../types'
+import { ProductI } from '../../types'
+import { getProductList, selectProductList, deleteProduct } from "../../stores/product.slice"
 
 const { Column } = Table
 const { Text } = Typography
 
-const TableCategories = () => {
+const TableProduct = () =>{
     const dispatch = useDispatch()
-    const [visibleDelete, setVisibleDelete] = useState(false)
-    const [selectedId, setSelectedId] = useState(null)
-    const categories: Array<CategoryI> = useSelector(selectCategoryList)!
+    const [visibleDelete, setVisibleDelete] = useState(false);
+    const [selectedId, setSelectedId] = useState(null);
+
+    const products: Array<ProductI> = useSelector(selectProductList)!
+    
 
     useEffect(() => {
-        dispatch(getCategoryList())
+        dispatch(getProductList())
     }, [dispatch]) // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleDelete = () => {
-        dispatch(deleteCategory(selectedId!))
+        dispatch(deleteProduct(selectedId!))
         setVisibleDelete(false)
     }
     return (
@@ -46,17 +48,17 @@ const TableCategories = () => {
                 <p>Bạn có chắc chắn muốn xóa ?</p>
             </Modal>
             <Table
-                dataSource={categories.map((category) => ({
-                    ...category,
-                    key: category.id,
+                dataSource={products.map((Product) => ({
+                    ...Product,
+                    key: Product.id,
                 }))}
                 scroll={{ x: 1036 }}
                 // pagination={false}
                 locale={{
-                    emptyText: categories ? <Skeleton /> : "",
+                    emptyText: products ? <Skeleton /> : "",
                 }}
             >
-                {categories.length > 0 ? (
+                {products.length > 0 ? (
                     <>
                         <Column
                             title={<Text strong>STT</Text>}
@@ -66,24 +68,24 @@ const TableCategories = () => {
                         />
 
                         <Column
-                            title={<Text strong>Danh mục</Text>}
+                            title={<Text strong>Sản phẩm</Text>}
                             dataIndex="name"
                             render={(text, record: any) => (
-                                <Link to={`/category/${record.id}`}>
+                                <Link to={`/product/${record.id}`}>
                                     <Text className="text-link-direction">
                                         ID: {record.id} <br />
-                                        {record.name}
+                                        {record.productName}
                                     </Text>
                                 </Link>
                             )}
                         />
                         <Column
-                            title={<Text strong>Mô tả</Text>}
+                            title={<Text strong>Giá</Text>}
                             className="column-30"
-                            dataIndex="description"
+                            dataIndex="price"
                             render={(text, record: any) => (
                                 <Text>
-                                    {record.description}
+                                    {record.price}₫
                                 </Text>
                             )}
                         />
@@ -96,7 +98,7 @@ const TableCategories = () => {
                                         <ButtonUI variant="danger" text="Xóa" onClick={() => { setSelectedId(record.id); setVisibleDelete(true) }} />
                                     </Col>
                                     <Col>
-                                        <Link to={`/updatecategory/${record.id}`}>
+                                        <Link to={`/updateproduct/${record.id}`}>
                                             <ButtonUI variant="light" text="Sửa" />
                                         </Link>
                                     </Col>
@@ -109,6 +111,7 @@ const TableCategories = () => {
             <BackTop style={{ right: "5%" }} />
         </Card>
     )
+
 }
 
-export default TableCategories
+export default TableProduct;

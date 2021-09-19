@@ -1,6 +1,7 @@
 export interface CategoryI {
     id?: number,
-    description?: string
+    description?: string,
+    name?: string
 }
 
 export interface RouteParamsI {
@@ -12,3 +13,17 @@ export interface AccountI{
     password?: string
 }
 
+export interface ProductI {
+    id?: number,
+    sku?: string,
+    unit?: string,
+    discount?: number,
+    categoryId?: number,
+    supplierId?: number,
+    description?: string
+}
+
+export interface SupplierI {
+    id?: number,
+    name?: string
+}

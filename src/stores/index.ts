@@ -13,6 +13,9 @@ import {
 } from "redux-persist"
 import categorySlice from "./category.slice"
 import authSlice from "./auth.slice"
+import productSlice from "./product.slice"
+import supplierSlice from "./supplier.slice"
+
 const persistConfig = {
 	key: "root",
 	storage,
@@ -21,7 +24,9 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
 	category: categorySlice,
-	auth: authSlice
+	product: productSlice,
+	auth: authSlice,
+	supplier: supplierSlice
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

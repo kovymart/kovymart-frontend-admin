@@ -30,6 +30,18 @@ const SiderComponent = () => {
             </Link>
           </Menu.Item>
         </SubMenu>
+        <SubMenu key="product" icon={<ShoppingCartOutlined />} title="Sản phẩm">
+          <Menu.Item key="listproducts">
+            <Link to="/product">
+              Danh sách
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="addproduct">
+            <Link to="/addproduct">
+              Thêm sản phẩm
+            </Link>
+          </Menu.Item>
+        </SubMenu>
         <SubMenu key="user" icon={<UserOutlined />} title="Tài khoản">
           <Menu.Item key="signin">
             <Link to="/signin">

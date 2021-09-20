@@ -1,9 +1,15 @@
-const Home = () => {
-    return (
-        <>
-            HomePage
-        </>
-    )
-}
+import { useEffect } from "react";
+import { useHistory } from "react-router";
 
-export default Home
+function Home() {
+	const history = useHistory();
+	useEffect(() => {
+		history.push('/product');
+	});
+	return (
+		<>
+		</>
+	);
+};
+
+export default Home;

@@ -1,10 +1,12 @@
 import { Layout, Menu } from "antd"
 import {
   ShoppingCartOutlined,
-  UserOutlined
+  UserOutlined,
+  UnorderedListOutlined,
 } from "@ant-design/icons"
 import { useState } from "react"
 import { Link } from 'react-router-dom'
+
 const { Sider } = Layout
 const { SubMenu } = Menu
 
@@ -18,18 +20,6 @@ const SiderComponent = () => {
     <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
       <div className="logo" />
       <Menu theme="light" defaultSelectedKeys={["category"]} mode="inline">
-        <SubMenu key="category" icon={<ShoppingCartOutlined />} title="Danh mục">
-          <Menu.Item key="listcategories">
-            <Link to="/category">
-              Danh sách
-            </Link>
-          </Menu.Item>
-          <Menu.Item key="addcategory">
-            <Link to="/addcategory">
-              Thêm danh mục
-            </Link>
-          </Menu.Item>
-        </SubMenu>
         <SubMenu key="product" icon={<ShoppingCartOutlined />} title="Sản phẩm">
           <Menu.Item key="listproducts">
             <Link to="/product">
@@ -39,6 +29,18 @@ const SiderComponent = () => {
           <Menu.Item key="addproduct">
             <Link to="/addproduct">
               Thêm sản phẩm
+            </Link>
+          </Menu.Item>
+        </SubMenu>
+        <SubMenu key="category" icon={<UnorderedListOutlined />} title="Danh mục">
+          <Menu.Item key="listcategories">
+            <Link to="/category">
+              Danh sách
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="addcategory">
+            <Link to="/addcategory">
+              Thêm danh mục
             </Link>
           </Menu.Item>
         </SubMenu>

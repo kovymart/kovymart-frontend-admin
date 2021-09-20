@@ -1,0 +1,1 @@
+export const categoryIcon = 'https://image.cooky.vn/ads/s320/5f225ed6-a1c3-4ef6-a246-3a6cd2a33397.png';

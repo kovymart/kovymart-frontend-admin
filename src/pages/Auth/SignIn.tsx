@@ -1,30 +1,30 @@
-import { Card, Form, Input, Row, Col, Typography } from 'antd'
-import { AccountI } from '../../types'
-import ButtonUI from '../../components/UIKit/ButtonUI'
-import { signIn, selectRequesting, selectSignInMessage } from '../../stores/auth.slice'
-import { useDispatch, useSelector } from 'react-redux'
-import { MessageStatus } from '../../constants/message-status'
-import { useHistory, Link } from "react-router-dom"
-import { useEffect } from 'react'
-const { Text, Title } = Typography
+import { Card, Form, Input, Row, Col, Typography } from 'antd';
+import { AccountI } from '../../types';
+import ButtonUI from '../../components/UIKit/ButtonUI';
+import { signIn, selectRequesting, selectSignInMessage } from '../../stores/auth.slice';
+import { useDispatch, useSelector } from 'react-redux';
+import { MessageStatus } from '../../constants/message-status';
+import { useHistory, Link } from "react-router-dom";
+import { useEffect } from 'react';
+const { Text, Title } = Typography;
 const SignIn = () => {
-    const [form] = Form.useForm()
-    const dispatch = useDispatch()
-    let history = useHistory()
+    const [form] = Form.useForm();
+    const dispatch = useDispatch();
+    let history = useHistory();
 
     const handleSubmit = (e: AccountI) => {
-        dispatch(signIn(e))
-    }
+        dispatch(signIn(e));
+    };
 
-    const message = useSelector(selectSignInMessage)
+    const message = useSelector(selectSignInMessage);
     useEffect(() => {
         if (message === MessageStatus.SUCCESS) {
-            history.push('/')
+            history.push('/');
         }
-    }, [message]) // eslint-disable-line react-hooks/exhaustive-deps
+    }, [message]); // eslint-disable-line react-hooks/exhaustive-deps
 
 
-    const requesting: boolean = useSelector(selectRequesting)
+    const requesting: boolean = useSelector(selectRequesting);
     return (
         <Row className="d-flex" justify="center">
             <Col xs={20} md={12}>
@@ -42,10 +42,6 @@ const SignIn = () => {
                                     label="Email"
                                     name="email"
                                     rules={[
-                                        {
-                                            type: "email",
-                                            message: "Email không hợp lệ!",
-                                        },
                                         {
                                             required: true,
                                             message: "Vui lòng nhập email!",
@@ -93,7 +89,7 @@ const SignIn = () => {
                 </Card>
             </Col>
         </Row>
-    )
-}
+    );
+};
 
-export default SignIn
+export default SignIn;

@@ -16,3 +16,6 @@ export const checkAuth = () => {
 
   return true;
 };
+
+export const clearAccessToken = () =>
+  localStorage.removeItem(LOCAL_STORAGE_ACCESS_TOKEN);

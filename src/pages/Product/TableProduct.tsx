@@ -81,6 +81,7 @@ const TableProduct = () => {
             />
 
             <Column
+              className="column-product"
               title={<Text strong>Sản phẩm</Text>}
               dataIndex="name"
               render={(text, record: any) => (
@@ -90,6 +91,15 @@ const TableProduct = () => {
                     {record.productName}
                   </Text>
                 </Link>
+              )}
+            /><Column
+              title={<Text strong>Thông tin chi tiết</Text>}
+              dataIndex="name"
+              render={(text, record: any) => (
+                <Text >
+                  <Text strong> ID danh mục: </Text>{record.categoryId} <br />
+                  <Text strong> ID nhà cung cấp: </Text>{record.supplierId} <br />
+                </Text>
               )}
             />
             <Column

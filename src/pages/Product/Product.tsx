@@ -2,8 +2,9 @@ import { Row, Col } from 'antd';
 import SearchProducts from './SearchProduct';
 import TableProducts from './TableProduct';
 import './Product.css';
+
 export default function Product() {
-  return (
+   return (
     <Col>
       {/* Search engine */}
       <Row className="d-flex" justify="center">

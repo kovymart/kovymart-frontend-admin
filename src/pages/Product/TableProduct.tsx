@@ -10,6 +10,7 @@ import {
   selectProductList,
   deleteProduct,
   selectSearchParam,
+  selectRequesting,
 } from "../../stores/product.slice";
 
 const { Column } = Table;
@@ -19,7 +20,7 @@ const TableProduct = () => {
   const dispatch = useDispatch();
   const [visibleDelete, setVisibleDelete] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
-
+  const requesting = useSelector(selectRequesting);
   const products: Array<ProductI> = useSelector(selectProductList)!;
   const pageSize = useSelector(selectPageSizeProduct);
   const searchParam = useSelector(selectSearchParam);
@@ -71,7 +72,7 @@ const TableProduct = () => {
           emptyText: products ? <Skeleton /> : "",
         }}
       >
-        {products.length > 0 ? (
+        {products.length > 0 && !requesting ? (
           <>
             <Column
               title={<Text strong>STT</Text>}

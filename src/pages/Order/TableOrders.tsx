@@ -19,7 +19,6 @@ import {
   selectPageSizeOrder,
   selectStatusSelected,
   setStatusSelected,
-  selectRequesting,
   selectUpdateStatus,
 } from '../../stores/order.slice';
 import { OrderI } from '../../types';
@@ -36,7 +35,6 @@ const TableOrders = () => {
   const orders: Array<OrderI> = useSelector(selectOrderList)!;
   const pageSize = useSelector(selectPageSizeOrder)!;
   const statusSelected = useSelector(selectStatusSelected);
-  const requesting = useSelector(selectRequesting);
   const requesting_updateStatus = useSelector(selectUpdateStatus);
   useEffect(() => {
     const data = {

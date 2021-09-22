@@ -8,6 +8,7 @@ import {
   Row,
   Col,
   Select,
+  Spin
 } from "antd";
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
@@ -18,6 +19,7 @@ import {
   selectPageSizeOrder,
   selectStatusSelected,
   setStatusSelected,
+  selectUpdateStatus,
 } from '../../stores/order.slice';
 import { OrderI } from '../../types';
 import Date from '../../helpers/Date';
@@ -33,6 +35,7 @@ const TableOrders = () => {
   const orders: Array<OrderI> = useSelector(selectOrderList)!;
   const pageSize = useSelector(selectPageSizeOrder)!;
   const statusSelected = useSelector(selectStatusSelected);
+  const requesting_updateStatus = useSelector(selectUpdateStatus);
   useEffect(() => {
     const data = {
       limit: 10,
@@ -112,15 +115,15 @@ const TableOrders = () => {
               />
 
               <Column
-                title={<Text strong>Thông tin đơn hàng</Text>}
+                title={<Text strong>Thông tin đơn hàng </Text>}
                 dataIndex="name"
                 render={(text, record: any) => (
                   <Text>
                     <Text strong>ID:</Text> {record.id}<br />
                     {record.totalPrice > 0 ?
                       <>
-                        <Text strong>Thành tiền:</Text>
-                        {" "} {record.totalPrice.toLocaleString('en-US', { style: 'currency', currency: 'VND' })}<br />
+                        <Text strong>Thành tiền: </Text>
+                        {"  "} {record.totalPrice.toLocaleString('en-US', { style: 'currency', currency: 'VND' })}<br />
                       </>
                       : ""}
                     <Text strong> Ngày lập: </Text> <Date date={record.createdAt} />
@@ -150,7 +153,13 @@ const TableOrders = () => {
                 title={<Text strong>Trạng thái</Text>}
                 dataIndex="name"
                 render={(text, record: any) => (
-                  <Status status={record.status} />
+                  <>
+                    {requesting_updateStatus
+                      ? <Spin />
+                      :
+                      <Status status={record.status} />
+                    }
+                  </>
                 )}
               />
               <Column

@@ -30,7 +30,7 @@ function ModalStatus(props: any) {
       ]}
     >
       <Select style={{ width: '17rem' }} onChange={handleSelect}>
-        <Option value="1">Chờ duyệt{props.id}</Option>
+        <Option value="1">Chờ duyệt</Option>
         <Option value="2">Đã duyệt</Option>
         <Option value="3">Đang đóng gói</Option>
         <Option value="4">Đang vận chuyển</Option>

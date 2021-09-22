@@ -185,7 +185,7 @@ function UpdateProduct() {
 										/>
 									</Col>
 									<Col>
-										<Link to="/category">
+										<Link to="/product">
 											<ButtonUI
 												variant="secondary"
 												text="Quay lại"

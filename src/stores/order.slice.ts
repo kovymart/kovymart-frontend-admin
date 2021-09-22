@@ -11,6 +11,7 @@ import { MessageStatus } from '../constants/message-status';
 import { OrderI } from '../types';
 
 interface InitialStateI {
+  updateStatus?: boolean;
   requesting: boolean,
   success?: boolean,
   message?: string,
@@ -106,6 +107,14 @@ export const selectPageSizeOrder = createSelector(
 export const selectStatusSelected = createSelector(
   [selectOrder],
   (state: any) => state.statusSelected
+);
+export const selectRequesting = createSelector(
+  [selectOrder],
+  (state: any) => state.requesting
+);
+export const selectUpdateStatus = createSelector(
+  [selectOrder],
+  (state: any) => state.updateStatus
 );
 
 export const { setStatusSelected } = orderSlice.actions;

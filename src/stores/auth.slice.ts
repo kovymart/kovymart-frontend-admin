@@ -15,33 +15,16 @@ interface InitialStateI {
     requesting: boolean,
     success?: boolean,
     message?: string,
-    signUpMsg: string,
     signInMsg: string,
 }
 
 const initialState: InitialStateI = {
     requesting: false,
-    signUpMsg: MessageStatus.IDLE,
     signInMsg: MessageStatus.IDLE,
 };
 
 const prefix = 'auth';
 //------------------------ACTIONS------------------------
-
-export const signUp = createAsyncThunk(
-    `${prefix}/signUp`,
-    async (data: AccountI, { rejectWithValue }) => {
-        try {
-            const res = await authApi.signUp(data);
-            return res;
-        } catch (error: any) {
-            if (!error.response) {
-                throw error;
-            }
-            return rejectWithValue(error.response.data);
-        }
-    },
-);
 
 export const signIn = createAsyncThunk(
     `${prefix}/signIn`,
@@ -63,32 +46,12 @@ const authSlice = createSlice({
     name: "auth",
     initialState: initialState,
     reducers: {
-        setSignUpMsgToDefault: (state) => {
-            state.signUpMsg = MessageStatus.IDLE;
-        },
         setSignInMsgToDefault: (state) => {
             state.signInMsg = MessageStatus.IDLE;
         },
     },
     extraReducers: (builder) => {
         builder
-            .addCase(signUp.pending, (state) => {
-                state.requesting = true;
-                state.signUpMsg = MessageStatus.PENDING;
-            })
-            .addCase(signUp.rejected, (state, action: any) => {
-                state.requesting = false;
-                state.signUpMsg = MessageStatus.ERROR;
-                console.log(action);
-                NotifyHelper.error(action.payload?.message ? action.payload.message
-                    : action.error.message, 'Đăng ký thất bại !');
-            })
-            .addCase(signUp.fulfilled, (state) => {
-                state.requesting = false;
-                state.signUpMsg = MessageStatus.SUCCESS;
-                NotifyHelper.success('Đăng ký thành công !', MessageStatus.SUCCESS);
-            })
-
             .addCase(signIn.pending, (state) => {
                 state.requesting = true;
                 state.signInMsg = MessageStatus.PENDING;
@@ -104,13 +67,14 @@ const authSlice = createSlice({
                 state.signInMsg = MessageStatus.SUCCESS;
                 state.accessToken = action.payload.accessToken;
                 setAccessTokenToLocalStorage(action.payload.accessToken);
+                console.log(action);
                 NotifyHelper.success('Đăng nhập thành công !', MessageStatus.SUCCESS);
             });
     },
 });
 
 //------------------------SELECTORS------------------------
-export const { setSignUpMsgToDefault, setSignInMsgToDefault } =
+export const { setSignInMsgToDefault } =
     authSlice.actions;
 
 export const selectAuth = (state: AppState) => state.auth;
@@ -123,10 +87,7 @@ export const selectSignInMessage = createSelector(
     [selectAuth],
     (state: any) => state.signInMsg
 );
-export const selectSignUpMessage = createSelector(
-    [selectAuth],
-    (state: any) => state.signUpMsg
-);
+
 
 
 export default authSlice.reducer;

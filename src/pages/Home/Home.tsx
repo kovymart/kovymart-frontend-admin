@@ -1,10 +1,14 @@
 import { useEffect } from "react";
 import { useHistory } from "react-router";
+import { checkAuth } from '../../helpers/auth';
 
 function Home() {
 	const history = useHistory();
 	useEffect(() => {
-		history.push('/product');
+		if (checkAuth()) {
+			history.push('/product');
+		}
+		else history.push('/signin');
 	});
 	return (
 		<>

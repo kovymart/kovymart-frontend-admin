@@ -86,20 +86,19 @@ const TableProduct = () => {
               title={<Text strong>Sản phẩm</Text>}
               dataIndex="name"
               render={(text, record: any) => (
-                <Link to={`/product/${record.id}`}>
-                  <Text className="text-link-direction">
-                    ID: {record.id} <br />
-                    {record.productName}
-                  </Text>
-                </Link>
+                <Text>
+                  <Text strong> ID:  </Text>{record.id} <br />
+                  {record.productName}
+                </Text>
               )}
             /><Column
               title={<Text strong>Thông tin chi tiết</Text>}
               dataIndex="name"
+              className="column-product"
               render={(text, record: any) => (
                 <Text >
-                  <Text strong> ID danh mục: </Text>{record.categoryId} <br />
-                  <Text strong> ID nhà cung cấp: </Text>{record.supplierId} <br />
+                  <Text strong> Danh mục: </Text>{record.category.name} <br />
+                  <Text strong> Nhà cung cấp: </Text>{record.supplier.name} <br />
                 </Text>
               )}
             />
@@ -117,7 +116,7 @@ const TableProduct = () => {
               title={<Row className="d-flex" justify="end"><Text strong>Tùy chọn</Text></Row>}
               dataIndex="LandOwnerName"
               render={(text, record: any) => (
-                <Row className="d-flex" justify="end" gutter={10}>
+                <Row className="d-flex" justify="end" gutter={10} style={{ rowGap: '.25rem' }}>
                   <Col>
                     <ButtonUI variant="danger" text="Xóa" onClick={() => { setSelectedId(record.id); setVisibleDelete(true); }} />
                   </Col>

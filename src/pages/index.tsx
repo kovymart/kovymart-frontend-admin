@@ -7,6 +7,7 @@ import AddProduct from "./Product/AddProduct";
 import UpdateProduct from "./Product/UpdateProduct";
 import SignIn from './Auth/SignIn';
 import Home from './Home/Home';
+import Order from "./Order/Order";
 import { checkAuth } from "../helpers/auth";
 
 export const Pages = () => {
@@ -37,6 +38,9 @@ export const Pages = () => {
 					</Route>
 					<Route path="/updatecategory/:id">
 						<UpdateCategory />
+					</Route>
+					<Route path="/order">
+						<Order />
 					</Route>
 				</>
 				}

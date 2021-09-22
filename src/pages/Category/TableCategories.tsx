@@ -1,39 +1,39 @@
-import { Modal, Card, Table, Skeleton, Typography, BackTop, Row, Col } from "antd"
-import { Link } from 'react-router-dom'
-import ButtonUI from "../../components/UIKit/ButtonUI"
-import { getCategoryList, selectCategoryList, deleteCategory } from "../../stores/category.slice"
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from "react-redux"
-import { CategoryI } from '../../types'
+import { Modal, Card, Table, Skeleton, Typography, BackTop, Row, Col } from "antd";
+import { Link } from 'react-router-dom';
+import ButtonUI from "../../components/UIKit/ButtonUI";
+import { getCategoryList, selectCategoryList, deleteCategory } from "../../stores/category.slice";
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
+import { CategoryI } from '../../types';
 
-const { Column } = Table
-const { Text } = Typography
+const { Column } = Table;
+const { Text } = Typography;
 
 const TableCategories = () => {
-    const dispatch = useDispatch()
-    const [visibleDelete, setVisibleDelete] = useState(false)
-    const [selectedId, setSelectedId] = useState(null)
-    const categories: Array<CategoryI> = useSelector(selectCategoryList)!
+    const dispatch = useDispatch();
+    const [visibleDelete, setVisibleDelete] = useState(false);
+    const [selectedId, setSelectedId] = useState(null);
+    const categories: Array<CategoryI> = useSelector(selectCategoryList)!;
 
     useEffect(() => {
-        dispatch(getCategoryList())
-    }, [dispatch]) // eslint-disable-line react-hooks/exhaustive-deps
+        dispatch(getCategoryList());
+    }, [dispatch]); // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleDelete = () => {
-        dispatch(deleteCategory(selectedId!))
-        setVisibleDelete(false)
-    }
+        dispatch(deleteCategory(selectedId!));
+        setVisibleDelete(false);
+    };
     return (
         <Card className="border-small shadow-small mt-4 rounded-3">
             <Modal
                 title={`Thông báo ${selectedId}`}
                 visible={visibleDelete}
-                onCancel={() => { setVisibleDelete(false) }}
+                onCancel={() => { setVisibleDelete(false); }}
                 footer={[
                     <ButtonUI text="Quay lại"
                         variant="light"
                         key="back"
-                        onClick={() => { setVisibleDelete(false) }}
+                        onClick={() => { setVisibleDelete(false); }}
                     />,
                     <ButtonUI text="Xác nhận"
                         variant="danger"
@@ -69,12 +69,10 @@ const TableCategories = () => {
                             title={<Text strong>Danh mục</Text>}
                             dataIndex="name"
                             render={(text, record: any) => (
-                                <Link to={`/category/${record.id}`}>
-                                    <Text className="text-link-direction">
-                                        ID: {record.id} <br />
-                                        {record.name}
-                                    </Text>
-                                </Link>
+                                <Text>
+                                    <Text strong> ID: </Text>{record.id} <br />
+                                    {record.name}
+                                </Text>
                             )}
                         />
                         <Column
@@ -93,7 +91,7 @@ const TableCategories = () => {
                             render={(text, record: any) => (
                                 <Row className="d-flex" justify="end" gutter={10}>
                                     <Col>
-                                        <ButtonUI variant="danger" text="Xóa" onClick={() => { setSelectedId(record.id); setVisibleDelete(true) }} />
+                                        <ButtonUI variant="danger" text="Xóa" onClick={() => { setSelectedId(record.id); setVisibleDelete(true); }} />
                                     </Col>
                                     <Col>
                                         <Link to={`/updatecategory/${record.id}`}>
@@ -108,7 +106,7 @@ const TableCategories = () => {
             </Table>
             <BackTop style={{ right: "5%" }} />
         </Card>
-    )
-}
+    );
+};
 
-export default TableCategories
+export default TableCategories;

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import {
   Card,
   Table,
@@ -15,7 +15,6 @@ import ButtonUI from "../../components/UIKit/ButtonUI";
 import {
   getOrderList,
   selectOrderList,
-  updateOrderStatus,
   selectPageSizeOrder,
   selectStatusSelected,
   setStatusSelected,
@@ -23,6 +22,7 @@ import {
 import { OrderI } from '../../types';
 import Date from '../../helpers/Date';
 import Status from '../../components/UIKit/Status';
+import ModalStatus from './ModalStatus';
 
 const { Column } = Table;
 const { Text } = Typography;
@@ -43,14 +43,19 @@ const TableOrders = () => {
     dispatch(setStatusSelected(1));
   }, [dispatch]);
 
-  const handleUpdate = (id: number, status: number) => {
-    const data = {
-      id: id,
-      status
-    };
-    if (id > 0) {
-      dispatch(updateOrderStatus(data));
-    }
+  // Handle update status order
+  const [idSelected, setIdSelected] = useState<number>();
+  const [visibleModalUpdate, setVisibleModalUpdate] = useState(false);
+  const modalUpdateCallback = useCallback(
+    (val) => {
+      setVisibleModalUpdate(val);
+    },
+    [setVisibleModalUpdate]
+  );
+
+  const handleUpdate = (id: number) => {
+    setIdSelected(id);
+    setVisibleModalUpdate(true);
   };
 
   const handleFilter = (e: string) => {
@@ -74,6 +79,11 @@ const TableOrders = () => {
 
   return (
     <>
+      <ModalStatus
+        id={idSelected}
+        visible={visibleModalUpdate}
+        setVisibility={modalUpdateCallback}
+      />
       <Row className="d-flex" justify="end">
         <Select className="float-right" defaultValue="1" style={{ width: '15rem' }} onChange={handleFilter}>
           <Option value="1">Đã thanh toán</Option>
@@ -122,8 +132,8 @@ const TableOrders = () => {
                 dataIndex="name"
                 render={(text, record: any) => (
                   <Text>
-                    ID: {record.customerId} <br />
-                    {record.customerName}
+                    <Text strong> ID: </Text> {record.customer.id} <br />
+                    <Text strong> Email: </Text> {record.customer.email} <br />
                   </Text>
                 )}
               />
@@ -149,12 +159,10 @@ const TableOrders = () => {
                 render={(text, record: any) => (
                   <Row className="d-flex" justify="end" gutter={10} >
                     <Col>
-                      <ButtonUI block={true} text="Xác nhận thanh toán" onClick={() => { handleUpdate(record.id, 1); }} />
-                      <br />
-                      <ButtonUI variant="light" block={true} style={{ marginTop: '6px' }} text="Hủy xác nhận thanh toán" onClick={() => handleUpdate(record.id, 2)} />
+                      <ButtonUI text="Thay đổi trạng thái" onClick={() => handleUpdate(record.id)} />
                       <br />
                       <Link to={`/order/${record.id}`}>
-                        <ButtonUI variant="light" block={true} style={{ marginTop: '6px' }} text="Xem chi tiết" />
+                        <ButtonUI variant="light" style={{ marginTop: '6px', float: 'right' }} text="Xem chi tiết" />
                       </Link>
                     </Col>
                   </Row>

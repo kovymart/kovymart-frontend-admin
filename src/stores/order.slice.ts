@@ -33,15 +33,14 @@ const initialState: InitialStateI = {
 //------------------------ACTIONS------------------------
 
 export const getOrderList = createAsyncThunk(
-  "category/getCategoryList",
+  "order/getCategoryList",
   async (data: object) => {
-    console.log(data);
     return await orderApi.getOrderList(data);
   }
 );
 
 export const updateOrderStatus = createAsyncThunk(
-  'category/updateOrderStatus',
+  "order/updateOrderStatus",
   async (data: AsyncStatusI) => {
     return await orderApi.updateOrderStatus(data.id, data.status);
   }

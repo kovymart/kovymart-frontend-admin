@@ -7,10 +7,8 @@ import {
   BackTop,
   Row,
   Col,
-  Select,
   Spin
 } from "antd";
-import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import ButtonUI from "../../components/UIKit/ButtonUI";
 import {
@@ -28,7 +26,6 @@ import ModalStatus from './ModalStatus';
 
 const { Column } = Table;
 const { Text } = Typography;
-const { Option } = Select;
 
 const TableOrders = () => {
   const dispatch = useDispatch();
@@ -61,16 +58,6 @@ const TableOrders = () => {
     setVisibleModalUpdate(true);
   };
 
-  const handleFilter = (e: string) => {
-    const data = {
-      limit: 10,
-      page: 1,
-      status: parseInt(e)
-    };
-    dispatch(getOrderList(data));
-    dispatch(setStatusSelected(parseInt(e)));
-  };
-
   const handlePagination = (e: number) => {
     const data = {
       limit: 10,
@@ -87,12 +74,6 @@ const TableOrders = () => {
         visible={visibleModalUpdate}
         setVisibility={modalUpdateCallback}
       />
-      <Row className="d-flex" justify="end">
-        <Select className="float-right" defaultValue="1" style={{ width: '15rem' }} onChange={handleFilter}>
-          <Option value="1">Đã thanh toán</Option>
-          <Option value="2">Chưa thanh toán</Option>
-        </Select>
-      </Row>
       <Card className="border-small shadow-small mt-4 rounded-3">
         <Table
           dataSource={orders.map((category) => ({
@@ -170,9 +151,6 @@ const TableOrders = () => {
                     <Col>
                       <ButtonUI text="Thay đổi trạng thái" onClick={() => handleUpdate(record.id)} />
                       <br />
-                      <Link to={`/order/${record.id}`}>
-                        <ButtonUI variant="light" style={{ marginTop: '6px', float: 'right' }} text="Xem chi tiết" />
-                      </Link>
                     </Col>
                   </Row>
                 )}

@@ -106,7 +106,7 @@ function UpdateProduct() {
 										</Form.Item>
 									</Col>
 									<Col xs={24} lg={8}>
-										<Title level={5}>unit </Title>
+										<Title level={5}>Đơn vị </Title>
 										<Form.Item name="unit"
 											rules={[{ required: true, message: 'Vui lòng nhập thông tin này!' }]}
 										>
@@ -114,7 +114,7 @@ function UpdateProduct() {
 										</Form.Item>
 									</Col>
 									<Col xs={24} lg={8}>
-										<Title level={5}>Discount </Title>
+										<Title level={5}>Giảm giá </Title>
 										<Form.Item name="discount"
 										>
 											<InputNumber min={0} max={1000000} />
